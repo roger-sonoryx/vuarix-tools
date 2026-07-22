@@ -10,6 +10,7 @@ import ReadingTimeTool from "./text/ReadingTimeTool";
 import SortLinesTool from "./text/SortLinesTool";
 import RemoveDuplicatesTool from "./text/RemoveDuplicatesTool";
 import PasswordGeneratorTool from "./text/PasswordGeneratorTool";
+import QrCodeTool from "./text/QrCodeTool";
 
 // Web
 import Base64Tool from "./web/Base64Tool";
@@ -22,13 +23,31 @@ import JsonValidatorTool from "./web/JsonValidatorTool";
 import SlugGeneratorTool from "./web/SlugGeneratorTool";
 import ColorConverterTool from "./web/ColorConverterTool";
 import ColorPickerTool from "./web/ColorPickerTool";
-import QrCodeTool from "./text/QrCodeTool";
 
-// Mapa central slug -> componente.
-// Cada slug aqui precisa existir em lib/data.ts. Ferramentas ainda não
-// implementadas (PDF, Imagens, Calculadoras, Conversores, Redes Sociais)
-// simplesmente não aparecem neste mapa e caem no aviso abaixo — de forma
-// clara e honesta, sem fingir funcionamento.
+// Calculadoras
+import FinancingTool from "./calculators/FinancingTool";
+import InterestTool from "./calculators/InterestTool";
+import PercentageTool from "./calculators/PercentageTool";
+import DiscountTool from "./calculators/DiscountTool";
+import FuelTool from "./calculators/FuelTool";
+import SplitBillTool from "./calculators/SplitBillTool";
+import BarbecueTool from "./calculators/BarbecueTool";
+import PaintTool from "./calculators/PaintTool";
+import FlooringTool from "./calculators/FlooringTool";
+import ConcreteTool from "./calculators/ConcreteTool";
+import BmiTool from "./calculators/BmiTool";
+import AgeTool from "./calculators/AgeTool";
+import DaysBetweenDatesTool from "./calculators/DaysBetweenDatesTool";
+
+// Conversores
+import WeightConverterTool from "./converters/WeightConverterTool";
+import DistanceConverterTool from "./converters/DistanceConverterTool";
+import AreaConverterTool from "./converters/AreaConverterTool";
+import VolumeConverterTool from "./converters/VolumeConverterTool";
+import TemperatureConverterTool from "./converters/TemperatureConverterTool";
+import SpeedConverterTool from "./converters/SpeedConverterTool";
+import FileSizeConverterTool from "./converters/FileSizeConverterTool";
+
 const toolComponents: Record<string, ComponentType> = {
   // Texto
   "contador-caracteres": CharacterCounterTool,
@@ -51,6 +70,30 @@ const toolComponents: Record<string, ComponentType> = {
   "slug-seo": SlugGeneratorTool,
   "conversor-hex-rgb-hsl": ColorConverterTool,
   "color-picker": ColorPickerTool,
+
+  // Calculadoras
+  financiamento: FinancingTool,
+  juros: InterestTool,
+  porcentagem: PercentageTool,
+  descontos: DiscountTool,
+  combustivel: FuelTool,
+  "divisao-contas": SplitBillTool,
+  "churrasco-calc": BarbecueTool,
+  tinta: PaintTool,
+  piso: FlooringTool,
+  concreto: ConcreteTool,
+  imc: BmiTool,
+  idade: AgeTool,
+  "dias-entre-datas": DaysBetweenDatesTool,
+
+  // Conversores
+  peso: WeightConverterTool,
+  distancia: DistanceConverterTool,
+  area: AreaConverterTool,
+  volume: VolumeConverterTool,
+  temperatura: TemperatureConverterTool,
+  velocidade: SpeedConverterTool,
+  arquivos: FileSizeConverterTool,
 };
 
 export default function ToolInterface({ slug }: { slug: string }) {
