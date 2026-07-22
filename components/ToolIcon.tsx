@@ -6,8 +6,8 @@ import {
   Flame, PaintBucket, Ruler, Cake, CalendarDays, Weight, Move,
   Square, Box, Thermometer, Gauge, Archive, Braces, FileCode,
   Minimize2, Binary, Link2, Map, Tags, Fingerprint, Hash, Pipette,
-  Instagram, Facebook, Linkedin, Youtube, LayoutGrid, IdCard,
-  Sparkle, ShieldCheck,
+  Instagram, Facebook, Linkedin, Youtube, LayoutGrid, CreditCard,
+Sparkle, ShieldCheck,
 } from "lucide-react";
 
 // Mapa central de ícones. Cada ferramenta em lib/data.ts referencia um ícone
@@ -21,7 +21,7 @@ const iconMap: Record<string, LucideIcon> = {
   Flame, PaintBucket, Ruler, Cake, CalendarDays, Weight, Move,
   Square, Box, Thermometer, Gauge, Archive, Braces, FileCode,
   Minimize2, Binary, Link2, Map, Tags, Fingerprint, Hash, Pipette,
-  Instagram, Facebook, Linkedin, Youtube, LayoutGrid, IdCard,
+  Instagram, Facebook, Linkedin, Youtube, LayoutGrid, CreditCard,
   Sparkle, ShieldCheck,
 };
 
