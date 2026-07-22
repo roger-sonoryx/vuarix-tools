@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { min-height: 100vh; background:#0d141f; color:#dce2f2; }
+* { box-sizing: border-box; }
+::selection { background:#065bd9; color:white; }
+
+.bg-mesh {
+  background-color:#0a2647;
+  background-image:radial-gradient(at 0% 0%,rgba(17,63,111,.94) 0,transparent 48%),radial-gradient(at 50% 0%,rgba(4,28,57,.96) 0,transparent 55%),radial-gradient(at 100% 0%,rgba(17,72,127,.75) 0,transparent 52%);
+}
+.glass-card { background:rgba(255,255,255,.035); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.08); }
+.stitch-card { background:#151c27; border:1px solid #1e3454; border-radius:1rem; transition:.25s ease; }
+.stitch-card:hover { border-color:rgba(176,200,241,.52); transform:translateY(-3px); }
+.tool-panel { border:1px solid #1e3454; background:#151c27; padding:1.25rem; border-radius:1rem; }
+.tool-label { display:block; font-size:.78rem; font-weight:600; color:#9fb0c6; }
+.tool-input,.tool-textarea { width:100%; margin-top:.5rem; border:1px solid #1e3454; background:#070e19; color:#dce2f2; border-radius:.75rem; padding:.8rem 1rem; outline:none; }
+.tool-textarea { min-height:220px; resize:vertical; }
+.tool-input:focus,.tool-textarea:focus { border-color:#b0c8f1; box-shadow:0 0 0 3px rgba(176,200,241,.10); }
+.tool-result { margin-top:1rem; padding:1rem; border-radius:.75rem; background:#0d141f; border:1px solid #1e3454; }

@@ -1,0 +1,13 @@
+import Link from "next/link";
+import { Bolt, ShieldCheck, Zap } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
+import SearchInput from "@/components/SearchInput";
+import CategoryCard from "@/components/CategoryCard";
+import ToolCard from "@/components/ToolCard";
+import { categories } from "@/lib/data";
+export default function HomePage(){const popular=categories.flatMap(c=>c.tools.map(t=>({t,c}))).slice(0,6);return <div className="min-h-screen bg-surface pb-20 md:pb-0"><Header/>
+ <main className="pt-16"><section className="bg-mesh relative overflow-hidden px-4 pb-20 pt-16 text-center sm:pb-24 sm:pt-20"><div className="relative z-10 mx-auto max-w-content"><div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-container/30 px-3 py-1 font-mono text-xs uppercase tracking-wider text-primary"><Bolt size={14}/>Fast. Free. Local.</div><h1 className="font-display text-4xl font-bold leading-[1.08] tracking-[-.04em] text-white sm:text-6xl">Ferramentas Digitais<br/><span className="text-primary">Sem Complicação</span></h1><p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-muted sm:text-base">Utilitários rápidos para documentos, imagens, texto, código e tarefas do dia a dia.</p><div className="mx-auto mt-8 max-w-xl"><SearchInput placeholder="Qual ferramenta você precisa agora?" size="lg"/></div><div className="mt-5 flex flex-wrap justify-center gap-4 text-xs text-muted"><span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-success"/>Processamento local</span><span className="flex items-center gap-1.5"><Zap size={14} className="text-primary"/>Sem cadastro</span></div></div></section>
+ <section className="mx-auto max-w-container px-4 py-14 sm:px-6"><div className="mb-8 flex items-end justify-between"><div><h2 className="font-display text-2xl font-bold text-white">Categorias</h2><p className="mt-1 text-sm text-muted">Explore nossas soluções organizadas por área.</p></div><Link href="/categorias" className="text-sm font-medium text-primary">Ver todas →</Link></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{categories.map(c=><CategoryCard key={c.slug} category={c}/>)}</div></section>
+ <section className="mx-auto max-w-container px-4 pb-16 sm:px-6"><div className="mb-7"><h2 className="font-display text-2xl font-bold text-white">Mais procuradas</h2><p className="mt-1 text-sm text-muted">Atalhos para resolver agora.</p></div><div className="grid gap-3 md:grid-cols-2">{popular.map(({t,c})=><ToolCard key={`${c.slug}-${t.slug}`} tool={t} categorySlug={c.slug}/>)}</div></section></main><Footer/><MobileBottomNav/></div>}

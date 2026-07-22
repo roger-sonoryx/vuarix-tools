@@ -1,0 +1,4 @@
+import Link from "next/link";
+import ToolIcon from "./ToolIcon";
+import type { Tool } from "@/lib/data";
+export default function ToolCard({tool,categorySlug}:{tool:Tool;categorySlug:string}){return <Link href={`/${categorySlug}/${tool.slug}`} className="stitch-card group flex items-center gap-4 p-5"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-highest text-muted transition group-hover:bg-primary-container group-hover:text-primary"><ToolIcon name={tool.icon} size={20}/></span><span className="min-w-0 flex-1"><span className="block text-sm font-semibold text-white">{tool.name}</span><span className="mt-1 block truncate text-xs text-muted">{tool.description}</span></span><span className="text-muted transition group-hover:translate-x-1 group-hover:text-primary">›</span></Link>}
