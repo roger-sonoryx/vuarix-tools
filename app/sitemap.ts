@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/lib/data";
 
+export const dynamic = "force-static";
+
 const baseUrl = "https://tools.vuarix.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
