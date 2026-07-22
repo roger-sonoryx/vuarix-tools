@@ -1,0 +1,11 @@
+PACOTE CORRIGIDO - VUARIX TOOLS STITCH
+
+Este pacote contém o layout Stitch aprovado e as correções para Next.js 15 / React 19 / Cloudflare.
+Extraia todo o conteúdo por cima da pasta atual do projeto, aceitando substituir os arquivos.
+O package-lock.json atual do projeto deve ser mantido, pois já contém as versões corretas.
+
+Depois execute:
+npm run build
+git add .
+git commit -m "Restaura layout Stitch aprovado"
+git push
