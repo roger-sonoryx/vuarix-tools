@@ -48,6 +48,18 @@ import TemperatureConverterTool from "./converters/TemperatureConverterTool";
 import SpeedConverterTool from "./converters/SpeedConverterTool";
 import FileSizeConverterTool from "./converters/FileSizeConverterTool";
 
+// Imagens
+import CompressImageTool from "./images/CompressImageTool";
+import ResizeImageTool from "./images/ResizeImageTool";
+import CropImageTool from "./images/CropImageTool";
+import ConvertFormatTool from "./images/ConvertFormatTool";
+import IconGeneratorTool from "./images/IconGeneratorTool";
+import FaviconGeneratorTool from "./images/FaviconGeneratorTool";
+
+// Mapa central slug -> componente.
+// Cada slug aqui precisa existir em lib/data.ts. Ferramentas ainda não
+// implementadas (PDF, Redes Sociais) simplesmente não aparecem neste mapa
+// e caem no aviso abaixo — de forma clara e honesta, sem fingir funcionamento.
 const toolComponents: Record<string, ComponentType> = {
   // Texto
   "contador-caracteres": CharacterCounterTool,
@@ -94,6 +106,14 @@ const toolComponents: Record<string, ComponentType> = {
   temperatura: TemperatureConverterTool,
   velocidade: SpeedConverterTool,
   arquivos: FileSizeConverterTool,
+
+  // Imagens
+  comprimir: CompressImageTool,
+  redimensionar: ResizeImageTool,
+  cortar: CropImageTool,
+  "converter-formato": ConvertFormatTool,
+  "gerar-icones": IconGeneratorTool,
+  "gerar-favicon": FaviconGeneratorTool,
 };
 
 export default function ToolInterface({ slug }: { slug: string }) {
