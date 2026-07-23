@@ -6,7 +6,15 @@ import CopyButton from "../shared/CopyButton";
 import ResetButton from "../shared/ResetButton";
 
 function toTitleCase(s: string) {
-  return s.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  // \p{L} (Unicode letter) trata corretamente palavras acentuadas (ex: "ação", "não").
+  return s.replace(/\p{L}[\p{L}\d]*/gu, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+
+function invertCase(s: string) {
+  return s
+    .split("")
+    .map((c) => (c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()))
+    .join("");
 }
 
 const options = [
@@ -19,6 +27,7 @@ const options = [
     apply: (s: string) =>
       s.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase()),
   },
+  { id: "invert", label: "iNVERTER cAIXA", apply: invertCase },
 ];
 
 export default function TextCaseTool() {
@@ -40,7 +49,7 @@ export default function TextCaseTool() {
 
       <div className="flex flex-wrap gap-2 mt-4">
         {options.map((o) => (
-          <button type="button"
+          <button
             key={o.id}
             onClick={() => setText((t) => o.apply(t))}
             disabled={!text}

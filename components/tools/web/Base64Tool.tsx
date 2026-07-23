@@ -53,7 +53,7 @@ export default function Base64Tool() {
     <ToolPanel>
       <div className="flex gap-2 mb-4">
         {(["encode", "decode"] as const).map((m) => (
-          <button type="button"
+          <button
             key={m}
             onClick={() => {
               setMode(m);

@@ -26,12 +26,7 @@ export default function CompressPdfTool() {
       // object streams e remove objetos não utilizados/duplicados — reduz
       // o tamanho em PDFs gerados por editores que não otimizam a estrutura.
       const outBytes = await doc.save({ useObjectStreams: true });
-      const pdfBuffer = outBytes.buffer.slice(
-  outBytes.byteOffset,
-  outBytes.byteOffset + outBytes.byteLength
-) as ArrayBuffer;
-
-setResult(new Blob([pdfBuffer], { type: "application/pdf" }));
+      setResult(new Blob([outBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError("Não foi possível compactar este PDF. Verifique se não está corrompido ou protegido por senha.");
     } finally {

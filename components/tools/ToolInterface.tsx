@@ -60,12 +60,22 @@ import FaviconGeneratorTool from "./images/FaviconGeneratorTool";
 import MergePdfTool from "./pdf/MergePdfTool";
 import SplitPdfTool from "./pdf/SplitPdfTool";
 import CompressPdfTool from "./pdf/CompressPdfTool";
-import ExtractPagesTool from "./pdf/ExtractPagesTool";
-import OrganizePagesTool from "./pdf/OrganizePagesTool";
-import RotatePagesTool from "./pdf/RotatePagesTool";
 import JpgToPdfTool from "./pdf/JpgToPdfTool";
 import PngToPdfTool from "./pdf/PngToPdfTool";
+import OrganizePagesTool from "./pdf/OrganizePagesTool";
+import ExtractPagesTool from "./pdf/ExtractPagesTool";
+import RotatePagesTool from "./pdf/RotatePagesTool";
 
+// Redes Sociais
+import InstagramResizeTool from "./social/InstagramResizeTool";
+import StoriesTool from "./social/StoriesTool";
+import CarouselTool from "./social/CarouselTool";
+import FacebookResizeTool from "./social/FacebookResizeTool";
+import LinkedinResizeTool from "./social/LinkedinResizeTool";
+import YoutubeThumbnailTool from "./social/YoutubeThumbnailTool";
+
+// Mapa central slug -> componente. Cada slug aqui precisa existir em
+// lib/data.ts. As 69 ferramentas do escopo original estão todas mapeadas.
 const toolComponents: Record<string, ComponentType> = {
   // Texto
   "contador-caracteres": CharacterCounterTool,
@@ -121,15 +131,23 @@ const toolComponents: Record<string, ComponentType> = {
   "gerar-icones": IconGeneratorTool,
   "gerar-favicon": FaviconGeneratorTool,
 
-// PDF
-"unir-pdf": MergePdfTool,
-"dividir-pdf": SplitPdfTool,
-"compactar-pdf": CompressPdfTool,
-"extrair-paginas": ExtractPagesTool,
-"organizar-paginas": OrganizePagesTool,
-"girar-paginas": RotatePagesTool,
-"jpg-para-pdf": JpgToPdfTool,
-"png-para-pdf": PngToPdfTool,
+  // PDF
+  "unir-pdf": MergePdfTool,
+  "dividir-pdf": SplitPdfTool,
+  "compactar-pdf": CompressPdfTool,
+  "jpg-para-pdf": JpgToPdfTool,
+  "png-para-pdf": PngToPdfTool,
+  "organizar-paginas": OrganizePagesTool,
+  "extrair-paginas": ExtractPagesTool,
+  "girar-paginas": RotatePagesTool,
+
+  // Redes Sociais
+  instagram: InstagramResizeTool,
+  stories: StoriesTool,
+  carrossel: CarouselTool,
+  facebook: FacebookResizeTool,
+  linkedin: LinkedinResizeTool,
+  "youtube-thumbnail": YoutubeThumbnailTool,
 };
 
 export default function ToolInterface({ slug }: { slug: string }) {
@@ -137,7 +155,7 @@ export default function ToolInterface({ slug }: { slug: string }) {
 
   if (!Component) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-border-light p-10 text-center text-sm text-muted-light dark:border-border-dark dark:text-muted-dark">
+      <div className="rounded-2xl border-2 border-dashed border-border-light dark:border-border-dark p-10 text-center text-muted-light dark:text-muted-dark text-sm">
         Esta ferramenta ainda está em desenvolvimento e será implementada em
         uma próxima etapa.
       </div>

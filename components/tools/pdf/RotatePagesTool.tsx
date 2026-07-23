@@ -65,12 +65,7 @@ export default function RotatePagesTool() {
       }
 
       const outBytes = await doc.save();
-      const pdfBuffer = outBytes.buffer.slice(
-  outBytes.byteOffset,
-  outBytes.byteOffset + outBytes.byteLength
-) as ArrayBuffer;
-
-setResult(new Blob([pdfBuffer], { type: "application/pdf" }));
+      setResult(new Blob([outBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError("Não foi possível girar as páginas.");
     } finally {

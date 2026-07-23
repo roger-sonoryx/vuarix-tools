@@ -49,12 +49,7 @@ export default function ExtractPagesTool() {
       const pages = await newDoc.copyPages(src, parsed.map((p) => p - 1));
       pages.forEach((p) => newDoc.addPage(p));
       const outBytes = await newDoc.save();
-      const pdfBuffer = outBytes.buffer.slice(
-  outBytes.byteOffset,
-  outBytes.byteOffset + outBytes.byteLength
-) as ArrayBuffer;
-
-setResult(new Blob([pdfBuffer], { type: "application/pdf" }));
+      setResult(new Blob([outBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError("Não foi possível extrair estas páginas.");
     } finally {

@@ -27,11 +27,14 @@ export default function DownloadButton({
     document.body.appendChild(a);
     a.click();
     a.remove();
+    // Pequeno atraso antes de revogar: alguns navegadores ainda estão
+    // processando o download no momento do clique.
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   return (
-    <button type="button"
+    <button
+      type="button"
       onClick={handleDownload}
       disabled={disabled || !data}
       aria-label={label}

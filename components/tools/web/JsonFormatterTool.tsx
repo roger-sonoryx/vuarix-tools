@@ -4,6 +4,7 @@ import { useState } from "react";
 import ToolPanel from "../shared/ToolPanel";
 import CopyButton from "../shared/CopyButton";
 import ResetButton from "../shared/ResetButton";
+import DownloadButton from "../shared/DownloadButton";
 import { ErrorMessage } from "../shared/Messages";
 
 export default function JsonFormatterTool() {
@@ -37,14 +38,24 @@ export default function JsonFormatterTool() {
       />
 
       <div className="flex flex-wrap gap-2 mt-4">
-        <button type="button"
+        <button
+          type="button"
           onClick={() => format(2)}
           disabled={!input}
           className="text-white text-sm font-medium px-4 py-2 rounded-lg bg-action hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Formatar (2 espaços)
         </button>
-        <button type="button"
+        <button
+          type="button"
+          onClick={() => format(4)}
+          disabled={!input}
+          className="text-sm font-medium px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:opacity-70 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Formatar (4 espaços)
+        </button>
+        <button
+          type="button"
           onClick={() => format(0)}
           disabled={!input}
           className="text-sm font-medium px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:opacity-70 transition disabled:opacity-40 disabled:cursor-not-allowed"
@@ -68,9 +79,12 @@ export default function JsonFormatterTool() {
 
       {!error && output && (
         <div className="mt-4">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <span className="text-sm font-medium">Resultado</span>
-            <CopyButton value={output} />
+            <div className="flex gap-2">
+              <CopyButton value={output} />
+              <DownloadButton data={output} filename="dados.json" mimeType="application/json" label="Baixar .json" />
+            </div>
           </div>
           <pre className="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark p-4 text-xs font-mono overflow-x-auto max-h-80">
             {output}

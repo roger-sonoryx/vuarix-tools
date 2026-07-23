@@ -50,12 +50,7 @@ export default function MergePdfTool() {
       }
 
       const mergedBytes = await mergedPdf.save();
-      const pdfBuffer = mergedBytes.buffer.slice(
-  mergedBytes.byteOffset,
-  mergedBytes.byteOffset + mergedBytes.byteLength
-) as ArrayBuffer;
-
-setResult(new Blob([pdfBuffer], { type: "application/pdf" }));
+      setResult(new Blob([mergedBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError("Não foi possível unir estes PDFs. Verifique se os arquivos não estão corrompidos ou protegidos por senha.");
     } finally {

@@ -86,9 +86,7 @@ export default function TemperatureConverterTool() {
               id="temp-result"
               readOnly
               value={
-  result &&
-  "converted" in result &&
-  typeof result.converted === "number"
+  result && "converted" in result && typeof result.converted === "number"
     ? result.converted.toFixed(2)
     : ""
 }

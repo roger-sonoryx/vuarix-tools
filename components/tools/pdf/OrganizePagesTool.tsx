@@ -56,12 +56,7 @@ export default function OrganizePagesTool() {
       const pages = await newDoc.copyPages(src, order.map((n) => n - 1));
       pages.forEach((p) => newDoc.addPage(p));
       const outBytes = await newDoc.save();
-      const pdfBuffer = outBytes.buffer.slice(
-  outBytes.byteOffset,
-  outBytes.byteOffset + outBytes.byteLength
-) as ArrayBuffer;
-
-setResult(new Blob([pdfBuffer], { type: "application/pdf" }));
+      setResult(new Blob([outBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError("Não foi possível reorganizar as páginas.");
     } finally {

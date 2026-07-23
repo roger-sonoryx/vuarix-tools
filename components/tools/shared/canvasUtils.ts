@@ -50,3 +50,31 @@ export const EXT: Record<string, string> = {
   "image/png": "png",
   "image/webp": "webp",
 };
+
+// Recorte central + redimensionamento para preencher exatamente o tamanho
+// alvo, igual a "object-fit: cover" do CSS. Usado pelas ferramentas de
+// Redes Sociais para adaptar qualquer imagem a um formato fixo sem distorcer.
+export function coverCropCanvas(img: HTMLImageElement, targetW: number, targetH: number): HTMLCanvasElement {
+  const targetRatio = targetW / targetH;
+  const sourceRatio = img.naturalWidth / img.naturalHeight;
+
+  let sx = 0, sy = 0, sw = img.naturalWidth, sh = img.naturalHeight;
+
+  if (sourceRatio > targetRatio) {
+    // imagem mais "larga" que o alvo: corta as laterais
+    sw = img.naturalHeight * targetRatio;
+    sx = (img.naturalWidth - sw) / 2;
+  } else {
+    // imagem mais "alta" que o alvo: corta topo/base
+    sh = img.naturalWidth / targetRatio;
+    sy = (img.naturalHeight - sh) / 2;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = targetW;
+  canvas.height = targetH;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas não suportado neste navegador.");
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetW, targetH);
+  return canvas;
+}

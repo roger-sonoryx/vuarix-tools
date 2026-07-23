@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ToolPanel from "../shared/ToolPanel";
 import CopyButton from "../shared/CopyButton";
 import ResetButton from "../shared/ResetButton";
@@ -19,17 +19,26 @@ export default function Sha256Tool() {
   const [input, setInput] = useState("");
   const [hash, setHash] = useState("");
   const [loading, setLoading] = useState(false);
+  // Token de requisição: garante que só a última digitação atualize o resultado,
+  // mesmo se um cálculo anterior terminar depois de um mais recente.
+  const requestId = useRef(0);
 
   const handleChange = async (value: string) => {
     setInput(value);
     if (!value) {
       setHash("");
+      setLoading(false);
+      requestId.current += 1;
       return;
     }
+    const currentId = ++requestId.current;
     setLoading(true);
     const result = await sha256(value);
-    setHash(result);
-    setLoading(false);
+    if (currentId === requestId.current) {
+      setHash(result);
+      setLoading(false);
+    }
+    // Se currentId for antigo, o resultado é descartado silenciosamente.
   };
 
   return (
@@ -66,6 +75,7 @@ export default function Sha256Tool() {
           onClick={() => {
             setInput("");
             setHash("");
+            requestId.current += 1;
           }}
         />
       </div>

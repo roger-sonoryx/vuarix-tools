@@ -5,14 +5,29 @@ import ToolPanel from "../shared/ToolPanel";
 import CopyButton from "../shared/CopyButton";
 import ResetButton from "../shared/ResetButton";
 
+type SortMode = "alpha" | "alpha-desc" | "numeric" | "numeric-desc";
+
 export default function SortLinesTool() {
   const [text, setText] = useState("");
-  const [reverse, setReverse] = useState(false);
+  const [removeEmpty, setRemoveEmpty] = useState(false);
 
-  const sort = () => {
-    const lines = text.split("\n");
-    lines.sort((a, b) => a.localeCompare(b, "pt-BR"));
-    if (reverse) lines.reverse();
+  const sort = (mode: SortMode) => {
+    let lines = text.split("\n");
+    if (removeEmpty) lines = lines.filter((l) => l.trim() !== "");
+
+    if (mode === "alpha" || mode === "alpha-desc") {
+      lines.sort((a, b) => a.localeCompare(b, "pt-BR"));
+      if (mode === "alpha-desc") lines.reverse();
+    } else {
+      lines.sort((a, b) => {
+        const na = parseFloat(a.replace(",", "."));
+        const nb = parseFloat(b.replace(",", "."));
+        const va = isNaN(na) ? Infinity : na;
+        const vb = isNaN(nb) ? Infinity : nb;
+        return va - vb;
+      });
+      if (mode === "numeric-desc") lines.reverse();
+    }
     setText(lines.join("\n"));
   };
 
@@ -33,20 +48,45 @@ export default function SortLinesTool() {
       <label className="flex items-center gap-2 mt-3 text-sm">
         <input
           type="checkbox"
-          checked={reverse}
-          onChange={(e) => setReverse(e.target.checked)}
+          checked={removeEmpty}
+          onChange={(e) => setRemoveEmpty(e.target.checked)}
           className="accent-action"
         />
-        Ordem decrescente (Z → A)
+        Remover linhas vazias ao ordenar
       </label>
 
       <div className="flex flex-wrap gap-2 mt-4">
-        <button type="button"
-          onClick={sort}
+        <button
+          type="button"
+          onClick={() => sort("alpha")}
           disabled={!text}
           className="text-white text-sm font-medium px-4 py-2 rounded-lg bg-action hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Ordenar linhas
+          A → Z
+        </button>
+        <button
+          type="button"
+          onClick={() => sort("alpha-desc")}
+          disabled={!text}
+          className="text-sm font-medium px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:opacity-70 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Z → A
+        </button>
+        <button
+          type="button"
+          onClick={() => sort("numeric")}
+          disabled={!text}
+          className="text-sm font-medium px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:opacity-70 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Numérica crescente
+        </button>
+        <button
+          type="button"
+          onClick={() => sort("numeric-desc")}
+          disabled={!text}
+          className="text-sm font-medium px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:opacity-70 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Numérica decrescente
         </button>
         <CopyButton value={text} />
         <ResetButton onClick={() => setText("")} />

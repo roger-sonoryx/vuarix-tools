@@ -55,18 +55,8 @@ export default function ImagesToPdfBase({ accept, kindLabel }: { accept: string;
         page.drawImage(embedded, { x: 0, y: 0, width: embedded.width, height: embedded.height });
       }
 
-     const outBytes = await pdfDoc.save();
-
-const pdfBuffer = outBytes.buffer.slice(
-  outBytes.byteOffset,
-  outBytes.byteOffset + outBytes.byteLength
-) as ArrayBuffer;
-
-setResult(
-  new Blob([pdfBuffer], {
-    type: "application/pdf",
-  })
-);
+      const outBytes = await pdfDoc.save();
+      setResult(new Blob([outBytes] as BlobPart[], { type: "application/pdf" }));
     } catch {
       setError(`Não foi possível converter estas imagens ${kindLabel} em PDF.`);
     } finally {

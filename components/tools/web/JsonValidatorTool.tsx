@@ -14,10 +14,17 @@ export default function JsonValidatorTool() {
       JSON.parse(input);
       setResult({ valid: true, message: "JSON válido." });
     } catch (e) {
-      setResult({
-        valid: false,
-        message: e instanceof Error ? e.message : "JSON inválido.",
-      });
+      let message = e instanceof Error ? e.message : "JSON inválido.";
+      // Motores V8/JSC costumam incluir "position N" na mensagem nativa de erro.
+      const match = message.match(/position (\d+)/i);
+      if (match) {
+        const pos = parseInt(match[1], 10);
+        const before = input.slice(0, pos);
+        const line = before.split("\n").length;
+        const col = pos - before.lastIndexOf("\n");
+        message += ` (linha ${line}, coluna ${col})`;
+      }
+      setResult({ valid: false, message });
     }
   };
 
@@ -48,7 +55,8 @@ export default function JsonValidatorTool() {
       )}
 
       <div className="flex gap-2 mt-5">
-        <button type="button"
+        <button
+          type="button"
           onClick={validate}
           disabled={!input}
           className="text-white text-sm font-medium px-4 py-2 rounded-lg bg-action hover:opacity-90 transition disabled:opacity-40 disabled:cursor-not-allowed"
