@@ -121,15 +121,15 @@ const toolComponents: Record<string, ComponentType> = {
   "gerar-icones": IconGeneratorTool,
   "gerar-favicon": FaviconGeneratorTool,
 
-  // PDF
-  "unir-pdf": MergePdfTool,
-  "dividir-pdf": SplitPdfTool,
-  "comprimir-pdf": CompressPdfTool,
-  "extrair-paginas": ExtractPagesTool,
-  "organizar-paginas": OrganizePagesTool,
-  "girar-paginas": RotatePagesTool,
-  "jpg-para-pdf": JpgToPdfTool,
-  "png-para-pdf": PngToPdfTool,
+// PDF
+"unir-pdf": MergePdfTool,
+"dividir-pdf": SplitPdfTool,
+"compactar-pdf": CompressPdfTool,
+"extrair-paginas": ExtractPagesTool,
+"organizar-paginas": OrganizePagesTool,
+"girar-paginas": RotatePagesTool,
+"jpg-para-pdf": JpgToPdfTool,
+"png-para-pdf": PngToPdfTool,
 };
 
 export default function ToolInterface({ slug }: { slug: string }) {
