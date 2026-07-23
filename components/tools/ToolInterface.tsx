@@ -56,10 +56,16 @@ import ConvertFormatTool from "./images/ConvertFormatTool";
 import IconGeneratorTool from "./images/IconGeneratorTool";
 import FaviconGeneratorTool from "./images/FaviconGeneratorTool";
 
-// Mapa central slug -> componente.
-// Cada slug aqui precisa existir em lib/data.ts. Ferramentas ainda não
-// implementadas (PDF, Redes Sociais) simplesmente não aparecem neste mapa
-// e caem no aviso abaixo — de forma clara e honesta, sem fingir funcionamento.
+// PDF
+import MergePdfTool from "./pdf/MergePdfTool";
+import SplitPdfTool from "./pdf/SplitPdfTool";
+import CompressPdfTool from "./pdf/CompressPdfTool";
+import ExtractPagesTool from "./pdf/ExtractPagesTool";
+import OrganizePagesTool from "./pdf/OrganizePagesTool";
+import RotatePagesTool from "./pdf/RotatePagesTool";
+import JpgToPdfTool from "./pdf/JpgToPdfTool";
+import PngToPdfTool from "./pdf/PngToPdfTool";
+
 const toolComponents: Record<string, ComponentType> = {
   // Texto
   "contador-caracteres": CharacterCounterTool,
@@ -114,6 +120,16 @@ const toolComponents: Record<string, ComponentType> = {
   "converter-formato": ConvertFormatTool,
   "gerar-icones": IconGeneratorTool,
   "gerar-favicon": FaviconGeneratorTool,
+
+  // PDF
+  "unir-pdf": MergePdfTool,
+  "dividir-pdf": SplitPdfTool,
+  "comprimir-pdf": CompressPdfTool,
+  "extrair-paginas": ExtractPagesTool,
+  "organizar-paginas": OrganizePagesTool,
+  "girar-paginas": RotatePagesTool,
+  "jpg-para-pdf": JpgToPdfTool,
+  "png-para-pdf": PngToPdfTool,
 };
 
 export default function ToolInterface({ slug }: { slug: string }) {
@@ -121,7 +137,7 @@ export default function ToolInterface({ slug }: { slug: string }) {
 
   if (!Component) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-border-light dark:border-border-dark p-10 text-center text-muted-light dark:text-muted-dark text-sm">
+      <div className="rounded-2xl border-2 border-dashed border-border-light p-10 text-center text-sm text-muted-light dark:border-border-dark dark:text-muted-dark">
         Esta ferramenta ainda está em desenvolvimento e será implementada em
         uma próxima etapa.
       </div>
