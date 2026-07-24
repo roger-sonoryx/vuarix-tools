@@ -45,10 +45,13 @@ export default function Footer() {
 
       <div className="mx-auto mt-10 flex max-w-container items-center justify-between border-t border-border-dark pt-6 text-xs text-muted">
         <span>© 2026 Vuarix Tools</span>
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <Globe2 size={17} />
           <ShieldCheck size={17} />
           <Terminal size={17} />
+          <Link href="/contato" className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary-hover">
+            Fale com a Vuarix
+          </Link>
         </div>
       </div>
     </footer>

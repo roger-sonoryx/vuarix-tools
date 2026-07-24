@@ -23,6 +23,17 @@ import JsonValidatorTool from "./web/JsonValidatorTool";
 import SlugGeneratorTool from "./web/SlugGeneratorTool";
 import ColorConverterTool from "./web/ColorConverterTool";
 import ColorPickerTool from "./web/ColorPickerTool";
+import CssFormatterTool from "./web/CssFormatterTool";
+import CssMinifierTool from "./web/CssMinifierTool";
+import HtmlFormatterTool from "./web/HtmlFormatterTool";
+import HtmlMinifierTool from "./web/HtmlMinifierTool";
+import JavascriptFormatterTool from "./web/JavascriptFormatterTool";
+import JavascriptMinifierTool from "./web/JavascriptMinifierTool";
+import MetaTagsTool from "./web/MetaTagsTool";
+import OpenGraphTool from "./web/OpenGraphTool";
+import RobotsTxtTool from "./web/RobotsTxtTool";
+import SchemaOrgTool from "./web/SchemaOrgTool";
+import SitemapXmlTool from "./web/SitemapXmlTool";
 
 // Calculadoras
 import FinancingTool from "./calculators/FinancingTool";
@@ -55,6 +66,7 @@ import CropImageTool from "./images/CropImageTool";
 import ConvertFormatTool from "./images/ConvertFormatTool";
 import IconGeneratorTool from "./images/IconGeneratorTool";
 import FaviconGeneratorTool from "./images/FaviconGeneratorTool";
+import ConvertToJpgTool from "./images/ConvertToJpgTool";
 
 // PDF
 import MergePdfTool from "./pdf/MergePdfTool";
@@ -95,9 +107,20 @@ const toolComponents: Record<string, ComponentType> = {
   md5: Md5Tool,
   "json-formatter": JsonFormatterTool,
   "json-validator": JsonValidatorTool,
+  "html-formatter": HtmlFormatterTool,
+  "css-formatter": CssFormatterTool,
+  "javascript-formatter": JavascriptFormatterTool,
+  "html-minifier": HtmlMinifierTool,
+  "css-minifier": CssMinifierTool,
+  "javascript-minifier": JavascriptMinifierTool,
   "slug-seo": SlugGeneratorTool,
   "conversor-hex-rgb-hsl": ColorConverterTool,
   "color-picker": ColorPickerTool,
+  "meta-tags": MetaTagsTool,
+  "open-graph": OpenGraphTool,
+  "robots-txt": RobotsTxtTool,
+  "schema-org": SchemaOrgTool,
+  "sitemap-xml": SitemapXmlTool,
 
   // Calculadoras
   financiamento: FinancingTool,
@@ -130,6 +153,7 @@ const toolComponents: Record<string, ComponentType> = {
   "converter-formato": ConvertFormatTool,
   "gerar-icones": IconGeneratorTool,
   "gerar-favicon": FaviconGeneratorTool,
+  "converter-para-jpg": ConvertToJpgTool,
 
   // PDF
   "unir-pdf": MergePdfTool,

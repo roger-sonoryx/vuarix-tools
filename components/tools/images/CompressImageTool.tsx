@@ -26,7 +26,13 @@ export default function CompressImageTool() {
       const img = await loadImageElement(image.url);
       const canvas = drawToCanvas(img, image.width, image.height);
       const blob = await canvasToBlob(canvas, outputType, outputType === "image/jpeg" ? quality : undefined);
-      setResult({ blob, url: URL.createObjectURL(blob) });
+
+      if (blob.size >= image.file.size) {
+        setResult(null);
+        setError("A imagem já está otimizada ou não ficou menor após a compressão.");
+      } else {
+        setResult({ blob, url: URL.createObjectURL(blob) });
+      }
     } catch {
       setError("Não foi possível comprimir esta imagem.");
     } finally {
@@ -100,14 +106,8 @@ export default function CompressImageTool() {
           <div className="flex-1">
             {savings !== null && savings > 0 && (
               <SuccessMessage>
-                Reduzido em {savings}% ({(result.blob.size / 1024).toFixed(0)} KB, era{" "}
-                {(image.file.size / 1024).toFixed(0)} KB)
+                Reduzido em {savings}% ({(result.blob.size / 1024).toFixed(0)} KB, era {(image.file.size / 1024).toFixed(0)} KB)
               </SuccessMessage>
-            )}
-            {savings !== null && savings <= 0 && (
-              <p className="text-sm text-muted-light dark:text-muted-dark">
-                Esta imagem já está bem otimizada — o resultado ficou {(result.blob.size / 1024).toFixed(0)} KB.
-              </p>
             )}
           </div>
           <DownloadButton

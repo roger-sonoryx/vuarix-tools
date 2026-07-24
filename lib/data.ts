@@ -18,6 +18,27 @@ export type Category = {
   faqs: { q: string; a: string }[];
 };
 
+export type CategoryAccent = {
+  accent: string;
+  accentSoft: string;
+};
+
+export const categoryAccents: Record<string, CategoryAccent> = {
+  pdf: { accent: "#2563EB", accentSoft: "#DBEAFE" },
+  imagens: { accent: "#7C3AED", accentSoft: "#EDE9FE" },
+  texto: { accent: "#16A34A", accentSoft: "#DCFCE7" },
+  web: { accent: "#06B6D4", accentSoft: "#DBF4FF" },
+  calculadoras: { accent: "#F97316", accentSoft: "#FFE8D1" },
+  conversores: { accent: "#14B8A6", accentSoft: "#CCFBF1" },
+  "redes-sociais": { accent: "#EC4899", accentSoft: "#FCE7F3" },
+  criadores: { accent: "#C026D3", accentSoft: "#F5D0FE" },
+  ia: { accent: "#8B5CF6", accentSoft: "#EDE9FE" },
+};
+
+export function getCategoryAccent(slug: string): CategoryAccent {
+  return categoryAccents[slug] ?? categoryAccents.pdf;
+}
+
 export const categories: Category[] = [
   {
     slug: "pdf",
@@ -66,6 +87,7 @@ export const categories: Category[] = [
       { slug: "redimensionar", name: "Redimensionar Imagem", description: "Ajuste largura e altura", icon: "Maximize2" },
       { slug: "cortar", name: "Cortar Imagem", description: "Recorte a área desejada", icon: "Crop" },
       { slug: "converter-formato", name: "Converter JPG, PNG e WebP", description: "Converta entre os formatos mais usados", icon: "RefreshCw" },
+      { slug: "converter-para-jpg", name: "Converter para JPG", description: "Transforme AVIF, HEIC/HEIF ou WebP em JPG", icon: "RefreshCw" },
       { slug: "gerar-icones", name: "Gerar Ícones", description: "Crie ícones em múltiplos tamanhos", icon: "LayoutGrid" },
       { slug: "gerar-favicon", name: "Gerar Favicon", description: "Crie o favicon do seu site", icon: "Sparkle" },
     ],
@@ -100,7 +122,7 @@ export const categories: Category[] = [
       { slug: "descontos", name: "Descontos", description: "Calcule o valor com desconto", icon: "Percent" },
       { slug: "combustivel", name: "Combustível", description: "Compare álcool ou gasolina", icon: "Fuel" },
       { slug: "divisao-contas", name: "Divisão de contas", description: "Divida contas entre amigos", icon: "Users" },
-      { slug: "churrasco-calc", name: "Churrasco Calc", description: "Calcule a quantidade de carne e bebida", icon: "Flame" },
+      { slug: "churrasco-calc", name: "Calculadora de Churrasco", description: "Calcule a quantidade de carne e bebida", icon: "Flame" },
       { slug: "tinta", name: "Tinta", description: "Calcule a quantidade de tinta necessária", icon: "PaintBucket" },
       { slug: "piso", name: "Piso", description: "Calcule a quantidade de piso necessária", icon: "Square" },
       { slug: "concreto", name: "Concreto", description: "Calcule o volume de concreto necessário", icon: "Box" },
@@ -132,15 +154,15 @@ export const categories: Category[] = [
     icon: "Globe",
     faqs: [],
     tools: [
-      { slug: "json-formatter", name: "JSON Formatter", description: "Formate JSON de forma legível", icon: "Braces" },
-      { slug: "json-validator", name: "JSON Validator", description: "Valide a estrutura de um JSON", icon: "ShieldCheck" },
-      { slug: "html-formatter", name: "HTML Formatter", description: "Formate código HTML", icon: "FileCode" },
-      { slug: "css-formatter", name: "CSS Formatter", description: "Formate código CSS", icon: "FileCode" },
-      { slug: "javascript-formatter", name: "JavaScript Formatter", description: "Formate código JavaScript", icon: "FileCode" },
-      { slug: "html-minifier", name: "HTML Minifier", description: "Minifique código HTML", icon: "Minimize2" },
-      { slug: "css-minifier", name: "CSS Minifier", description: "Minifique código CSS", icon: "Minimize2" },
-      { slug: "javascript-minifier", name: "JavaScript Minifier", description: "Minifique código JavaScript", icon: "Minimize2" },
-      { slug: "base64", name: "Base64 Encode/Decode", description: "Codifique ou decodifique Base64", icon: "Binary" },
+      { slug: "json-formatter", name: "Formatador JSON", description: "Formate JSON de forma legível", icon: "Braces" },
+      { slug: "json-validator", name: "Validador JSON", description: "Valide a estrutura de um JSON", icon: "ShieldCheck" },
+      { slug: "html-formatter", name: "Formatador HTML", description: "Formate código HTML", icon: "FileCode" },
+      { slug: "css-formatter", name: "Formatador CSS", description: "Formate código CSS", icon: "FileCode" },
+      { slug: "javascript-formatter", name: "Formatador JavaScript", description: "Formate código JavaScript", icon: "FileCode" },
+      { slug: "html-minifier", name: "Minificador HTML", description: "Minifique código HTML", icon: "Minimize2" },
+      { slug: "css-minifier", name: "Minificador CSS", description: "Minifique código CSS", icon: "Minimize2" },
+      { slug: "javascript-minifier", name: "Minificador JavaScript", description: "Minifique código JavaScript", icon: "Minimize2" },
+      { slug: "base64", name: "Base64", description: "Codifique ou decodifique Base64", icon: "Binary" },
       { slug: "url-encode-decode", name: "URL Encode/Decode", description: "Codifique ou decodifique URLs", icon: "Link2" },
       { slug: "sitemap-xml", name: "Sitemap XML", description: "Gere um sitemap.xml", icon: "Map" },
       { slug: "robots-txt", name: "robots.txt", description: "Gere um arquivo robots.txt", icon: "FileText" },

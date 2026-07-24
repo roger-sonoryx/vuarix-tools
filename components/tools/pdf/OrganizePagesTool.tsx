@@ -93,7 +93,7 @@ export default function OrganizePagesTool() {
                   onDragOverItem(i);
                 }}
                 onDragEnd={() => setDragIndex(null)}
-                className="flex items-center gap-3 px-4 py-2.5 cursor-move bg-white dark:bg-surface-dark-alt"
+                className="flex items-center gap-3 px-4 py-2.5 cursor-move bg-surface-light dark:bg-surface-dark-alt"
               >
                 <GripVertical size={15} className="text-muted-light dark:text-muted-dark shrink-0" />
                 <span className="text-sm">

@@ -9,11 +9,13 @@ export default function SearchInput({
   placeholder = "Buscar...",
   value,
   onChange,
+  onKeyDown,
   size = "md",
 }: {
   placeholder?: string;
   value?: string;
   onChange?: (value: string) => void;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   size?: "md" | "lg";
 }) {
   const isLarge = size === "lg";
@@ -29,6 +31,7 @@ export default function SearchInput({
       <input
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
         className={`w-full rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark outline-none transition focus:border-action ${
           isLarge
